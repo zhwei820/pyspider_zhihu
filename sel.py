@@ -8,6 +8,8 @@ import logging
 
 from pyspider.libs.base_handler import *
 
+from mysql_wrapper.mysqldb import SQL
+
 logger = logging.getLogger("result")
 
 
@@ -103,3 +105,5 @@ class Handler(BaseHandler):
         logger.info('hello i am working')
         logger.info(result)
 
+        sql = SQL()
+        sql.replace('info',**result)
