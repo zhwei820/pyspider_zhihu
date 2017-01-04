@@ -8,7 +8,7 @@ import logging
 
 from pyspider.libs.base_handler import *
 
-from mysql_wrapper.mysqldb import SQL
+from mysql_wrapper.orm import Info
 
 logger = logging.getLogger("result")
 
@@ -104,6 +104,9 @@ class Handler(BaseHandler):
     def on_result(self, result, task, response):
         logger.info('hello i am working')
         logger.info(result)
-
-        sql = SQL()
-        sql.replace('info',**result)
+        if result:
+            info = Info()
+            for key in result:
+                info.__setattr__(key, result[key])
+            info.save()
+                
