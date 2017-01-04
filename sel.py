@@ -3,15 +3,16 @@
 # Created on 2017-01-04 10:01:56
 # Project: demo
 
-import json,time
+import json, time
+import logging
+
 from pyspider.libs.base_handler import *
 
+logger = logging.getLogger("result")
 
 
 class Handler(BaseHandler):
     
-    cookies = json.loads('[{"domain": ".zhihu.com", "secure": false, "value": "53b0982133cc4847875ef65fd6e53f84|1483497352000|1483497352000", "expiry": null, "path": "/", "httpOnly": false, "name": "q_c1"}, {"domain": "www.zhihu.com", "secure": false, "value": "3ac7d69ac2aeec569e27e3b3f3a7961d", "expiry": null, "path": "/", "httpOnly": false, "name": "_xsrf"}, {"domain": ".zhihu.com", "secure": false, "value": "ZTgyNWI2ZTQ3N2Q1NDIxNmI5MThlNjg3YjU3ZDM1MmY=|1483497351|f191664a0658c6a999b3055565aabecddfeccc66", "expiry": null, "path": "/", "httpOnly": false, "name": "l_cap_id"}, {"domain": ".zhihu.com", "secure": false, "value": "NjI3ZDcxOTc3ZWRlNDAyNjhlZWM4ZmExMGUwNTk4ZGQ=|1483497351|1d23fc76a0159a864f771553d27e932a76f5a302", "expiry": null, "path": "/", "httpOnly": false, "name": "cap_id"}, {"domain": ".zhihu.com", "secure": false, "value": "1", "expiry": null, "path": "/", "httpOnly": false, "name": "n_c"}, {"domain": ".zhihu.com", "secure": false, "value": "AJDCBPfoGQuPTiAd5X4s6qzHzQ8mR4ny0tY=|1483497353", "expiry": null, "path": "/", "httpOnly": false, "name": "d_c0"}, {"domain": ".zhihu.com", "secure": false, "value": "MTUzOGE3Nzg2NTVkNDVhYWJkZjYwMTI0ZGE4MDA0MmQ=|1483497353|cbb70d44a55e4e47a90367a141b2e1079e581085", "expiry": null, "path": "/", "httpOnly": false, "name": "r_cap_id"}, {"domain": ".zhihu.com", "secure": false, "value": "3fc69066-2a29-43ba-9b67-199d26ee8426", "expiry": null, "path": "/", "httpOnly": false, "name": "_zap"}, {"domain": ".zhihu.com", "secure": false, "value": "51854390", "expiry": null, "path": "/", "httpOnly": false, "name": "__utmc"}, {"domain": ".zhihu.com", "secure": false, "value": "Y2ZiZjA0OWJiZmY4NDdlYThlYzZlNjdlY2NjMmI1Njg=|1483497362|efd869d244495c48357891bfbd8a0e582067a161", "expiry": null, "path": "/", "httpOnly": false, "name": "login"}, {"domain": ".zhihu.com", "secure": false, "value": "51854390.2113416432.1483497355.1483497355.1483497355.1", "expiry": null, "path": "/", "httpOnly": false, "name": "__utma"}, {"domain": ".zhihu.com", "secure": false, "value": "51854390.0.10.1483497355", "expiry": null, "path": "/", "httpOnly": false, "name": "__utmb"}, {"domain": ".zhihu.com", "secure": false, "value": "51854390.1483497355.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)", "expiry": null, "path": "/", "httpOnly": false, "name": "__utmz"}, {"domain": ".zhihu.com", "secure": false, "value": "51854390.100-1|2=registration_date=20130520=1^3=entry_date=20130520=1", "expiry": null, "path": "/", "httpOnly": false, "name": "__utmv"}, {"domain": ".zhihu.com", "secure": false, "value": "Mi4wQUFEQU9ud2JBQUFBa01JRTktZ1pDeGNBQUFCaEFsVk5rdXlUV0FBZ2VrdnRQWmZYU292U3dVWC1UME5fZEgwaWN3|1483497365|572b450fa5ec5d1462b6f59a6f5249d26799c4f2", "expiry": null, "path": "/", "httpOnly": true, "name": "z_c0"}]')
-
     headers = {
        
         "Accept" : "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -120,5 +121,7 @@ class Handler(BaseHandler):
         }
     
 
-
+    def on_result(self, result, task, response):
+        logger.info('hello i am working')
+        logger.info(result)
 
